@@ -1,0 +1,105 @@
+{
+  "version": "3",
+  "description": "add_calendar_events",
+  "dataloss": false,
+  "steps": [
+    {
+      "kind": "CreateEnum",
+      "name": "recurrence_type",
+      "values": ["none", "daily", "weekly", "monthly", "yearly"]
+    },
+    {
+      "kind": "CreateTable",
+      "name": "calendar_events",
+      "columns": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "gen_random_uuid()",
+          "constraints": ["PrimaryKey"]
+        },
+        {
+          "name": "user_id",
+          "type": "UUID",
+          "constraints": ["NotNull"]
+        },
+        {
+          "name": "category_id",
+          "type": "UUID",
+          "constraints": ["NotNull"]
+        },
+        {
+          "name": "title",
+          "type": "TEXT",
+          "constraints": ["NotNull"]
+        },
+        {
+          "name": "description",
+          "type": "TEXT",
+          "constraints": []
+        },
+        {
+          "name": "amount",
+          "type": "DECIMAL(14,2)",
+          "constraints": ["NotNull"]
+        },
+        {
+          "name": "event_date",
+          "type": "DATE",
+          "constraints": ["NotNull"]
+        },
+        {
+          "name": "recurrence",
+          "type": "recurrence_type",
+          "constraints": []
+        },
+        {
+          "name": "is_completed",
+          "type": "BOOLEAN",
+          "default": "false",
+          "constraints": ["NotNull"]
+        },
+        {
+          "name": "created_at",
+          "type": "TIMESTAMPTZ(6)",
+          "default": "CURRENT_TIMESTAMP",
+          "constraints": ["NotNull"]
+        },
+        {
+          "name": "updated_at",
+          "type": "TIMESTAMPTZ(6)",
+          "default": "CURRENT_TIMESTAMP",
+          "constraints": ["NotNull"]
+        }
+      ],
+      "indexes": [
+        {
+          "name": "idx_calendar_events_user_date",
+          "columns": ["user_id", "event_date"]
+        },
+        {
+          "name": "idx_calendar_events_user_completed",
+          "columns": ["user_id", "is_completed"]
+        }
+      ],
+      "foreignKeys": [
+        {
+          "name": "calendar_events_user_id_fkey",
+          "columns": ["user_id"],
+          "referencedTable": "users",
+          "referencedColumns": ["id"],
+          "onDelete": "Cascade",
+          "onUpdate": "NoAction"
+        },
+        {
+          "name": "calendar_events_category_id_fkey",
+          "columns": ["category_id"],
+          "referencedTable": "categories",
+          "referencedColumns": ["id"],
+          "onDelete": "NoAction",
+          "onUpdate": "NoAction"
+        }
+      ]
+    }
+  ]
+}
