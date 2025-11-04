@@ -1,0 +1,44 @@
+# Database Configuration
+# PostgreSQL connection string for Prisma
+DATABASE_URL="postgresql://username:password@localhost:5432/finance_app?schema=public"
+
+# JWT Configuration
+# Secret key for JWT token signing (CHANGE IN PRODUCTION!)
+JWT_SECRET="your-super-secret-jwt-key-change-in-production"
+
+# Application Configuration
+# Node environment (development, production, test)
+NODE_ENV="development"
+
+# Server Configuration
+# Port for the development server (optional, Nuxt will use default)
+PORT=3000
+
+# API Configuration
+# Base URL for API endpoints (used in nuxt.config.ts)
+API_BASE="/api"
+
+# Security Configuration
+# API secret for server-side operations (used in nuxt.config.ts)
+API_SECRET="123"
+
+# Optional: Database Pool Configuration
+# Maximum number of connections in the connection pool
+DATABASE_POOL_MAX=10
+
+# Optional: Logging Configuration
+# Enable Prisma query logging (true/false)
+PRISMA_LOG_QUERIES="false"
+
+# Optional: CORS Configuration (if needed for production)
+# CORS_ORIGIN="https://yourdomain.com"
+
+# Optional: Email Configuration (if email features are added)
+# SMTP_HOST="smtp.gmail.com"
+# SMTP_PORT=587
+# SMTP_USER="your-email@gmail.com"
+# SMTP_PASS="your-app-password"
+
+# Optional: File Upload Configuration (if file upload features are added)
+# UPLOAD_MAX_SIZE="10MB"
+# UPLOAD_PATH="./uploads"
